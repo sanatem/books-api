@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 2019_09_27_125732) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["author_id"], name: "index_books_on_author_id"
+    t.index ["isbn"], name: "index_books_on_isbn"
+    t.index ["title"], name: "index_books_on_title"
   end
 
 end
