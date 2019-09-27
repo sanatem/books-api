@@ -4,7 +4,7 @@ author = Author.new(name: 'J.R.R', surname: 'Tolkien')
   Book.create(
     title: Faker::Book::title,
     isbn:  Faker::Code::isbn,
-    description: Faker::Lorem::sentence,
+    description: Faker::Lorem::paragraph,
     price: Faker::Number.decimal(l_digits: 2),
     author: author
   )
