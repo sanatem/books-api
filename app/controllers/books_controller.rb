@@ -1,16 +1,16 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :update, :destroy]
+
+  before_action :set_book, only: %i(show update destroy)
 
   # GET /books
   def index
-    @books = Book.all
-
-    render json: @books
+    @books = Book.includes(:author).all
+    render json: BookSerializer.new(@books).serialized_json
   end
 
   # GET /books/1
   def show
-    render json: @book
+    render json: BookSerializer.new(@book)
   end
 
   # POST /books
