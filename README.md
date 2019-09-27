@@ -1,24 +1,40 @@
-# README
+# Books API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This an API to manage Books from a Library.
 
-Things you may want to cover:
+## Prerequisites
 
-* Ruby version
+You will need the following to be installed:
 
-* System dependencies
+* Ruby language >= 2.5
+* Ruby on Rails >= 6.0
+* Bundler (http://bundler.io/)
 
-* Configuration
+## Installation
 
-* Database creation
+1. Clone this repo.
 
-* Database initialization
+2. Move into the folder of this project and execute:
 
-* How to run the test suite
+```
+$ bundle install
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+3. Finally, run the App executing:
+```
+$ rails server
+```
 
-* Deployment instructions
+## Testing
 
-* ...
+The app contains a folder inside spec/ which has unit, controller and request tests.
+To run all tests, move to the main folder of the project and execute:
+```
+$ rspec
+```
+
+## Implementation details
+
+
+1. Models: These are the business models.
+
