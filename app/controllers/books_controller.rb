@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
 
   before_action :set_book, only: %i(show update destroy)
+  before_action :set_author, only: %i(create)
 
   # GET /books
   def index
@@ -16,9 +17,10 @@ class BooksController < ApplicationController
   # POST /books
   def create
     @book = Book.new(book_params)
+    @book.author = @author
 
     if @book.save
-      render json: @book, status: :created, location: @book
+      render json: BookSerializer.new(@book), status: :created, location: @book
     else
       render json: @book.errors, status: :unprocessable_entity
     end
@@ -39,13 +41,21 @@ class BooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book
-      @book = Book.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def book_params
-      params.fetch(:book, {})
-    end
+  def set_book
+    @book = Book.find(params[:id])
+  end
+
+  def set_author
+    @author = Author.find_or_create_by(author_params)
+  end
+
+  def book_params
+    params.fetch(:book, {}).permit!
+  end
+
+  def author_params
+    params.fetch(:author, {}).permit!
+  end
+
 end

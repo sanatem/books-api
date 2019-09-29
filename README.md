@@ -25,6 +25,20 @@ $ bundle install
 $ rails server
 ```
 
+## API endpoints
+
+### GET /books
+It returns a list of books.
+
+### GET /books/:id
+It retrieves information about an specific Book.
+
+### POST /books
+It creates a new book.
+
+### DELETE /books
+
+
 ## Testing
 
 The app contains a folder inside spec/ which has unit, controller and request tests.
