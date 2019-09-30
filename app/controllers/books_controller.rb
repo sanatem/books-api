@@ -5,8 +5,8 @@ class BooksController < ApplicationController
 
   # GET /books
   def index
-    @books = Book.includes(:author).all
-    render json: BookSerializer.new(@books).serialized_json
+    query = BookQuery.new
+    render json: BookSerializer.new(query.result(search_params)).serialized_json
   end
 
   # GET /books/1
@@ -37,7 +37,11 @@ class BooksController < ApplicationController
 
   # DELETE /books/1
   def destroy
-    @book.destroy
+    if @book.destroy
+      render json: { status: 'deleted', message: 'Book deleted successfully' }
+    else
+      render json: { error: "Book couldn't be deleted" }
+    end
   end
 
   private
@@ -56,6 +60,10 @@ class BooksController < ApplicationController
 
   def author_params
     params.fetch(:author, {}).permit!
+  end
+
+  def search_params
+    params.permit(:title, :isbn, :author)
   end
 
 end

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
   rescue_from ::NameError, with: :error_occurred
   rescue_from ::ActionController::RoutingError, with: :error_occurred
 
-  def record_not_found(exception)
+  def record_not_found
     render json: { error: "Couldn't find entity. Check your params." }.to_json, status: 404
   end
 

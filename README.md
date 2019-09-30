@@ -25,6 +25,33 @@ $ bundle install
 $ rails server
 ```
 
+## Implementation details
+
+
+### 1. Models: These are the business models.
+
+#### Book
+> The main model of the App. Represents a Book with their attributes.
+
+#### Author
+> This model represents Authors' books. The main goal of this model is to separate logic for search purposes and data organization. For example, you can retrieve all books for an author.
+
+
+### 2. Queries: Applying SRP and good practices we separate
+
+#### BookQuery
+> This object encapsulates every query expected on a Book object.
+
+### 3. Serializers: These objects encapsulate the serialization behavior for API responses. Especially, I followed the (JSON API specification)[https://jsonapi.org/] and an excellent perfomance gem called `fastjson_api`
+> 
+
+#### BookSerializer
+> This object serializes every Book response.
+
+#### AuthorSerializer
+> This object serializes every Author response.
+
+
 ## API endpoints
 
 ### GET /books
@@ -196,9 +223,3 @@ To run all tests, move to the main folder of the project and execute:
 ```
 $ rspec
 ```
-
-## Implementation details
-
-
-1. Models: These are the business models.
-
