@@ -25,6 +25,15 @@ $ bundle install
 $ rails server
 ```
 
+## Docker
+In case you use docker for running this app, you should have installed Docker and run the following commands:
+
+1. Build the image
+```
+$ docker-compose build
+$ docker-compose up
+```
+
 ## Implementation details
 
 
@@ -42,7 +51,7 @@ $ rails server
 #### BookQuery
 > This object encapsulates every query expected on a Book object.
 
-### 3. Serializers: These objects encapsulate the serialization behavior for API responses. Especially, I followed the (JSON API specification)[https://jsonapi.org/] and an excellent perfomance gem called `fastjson_api`
+### 3. Serializers: These objects encapsulate the serialization behavior for API responses. Especially, I followed the [JSON API specification](https://jsonapi.org/) and an excellent perfomance gem called `fastjson_api`
 > 
 
 #### BookSerializer

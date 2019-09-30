@@ -1,0 +1,40 @@
+version: '3.2'
+
+services:
+  books_api-redis:
+    image: redis:latest
+
+  books_api-postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    volumes:
+      - type: volume
+        source: db_data
+        target: /var/lib/postgresql/data
+
+  books_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: books_api:slim
+    volumes:
+      - type: bind
+        source: .
+        target: /srv/books_api
+        consistency: delegated
+      - type: volume
+        source: node_modules
+        target: /srv/fishing/node_modules
+    ports:
+      - '3000:3000'
+      - '3035:3035'
+    depends_on:
+      - books_api-postgres
+      - books_api-redis
+    command: bash -c "rm -f tmp/pids/server.pid && rails s -b 0.0.0.0"
+    # command: ["tail", "-f", "/dev/null"]
+
+volumes:
+  node_modules:
+  db_data:
